@@ -1,5 +1,7 @@
 //“Find the div with id navbar and inject navbar.html into it.”
-loadComponent("navbar", "navbar.html");
+loadComponent("navbar", "navbar.html").then(() => {
+  updateCartCount();
+});
 loadComponent("footer", "footer.html");
 
 //“Don’t run anything until ALL HTML is fully loaded.”
