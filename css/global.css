@@ -1,0 +1,86 @@
+:root {
+  --primary: #ff6f3c;
+  --secondary: #ff9a3c;
+  --bg: #fff7f0;
+  --text: #333;
+  --radius: 8px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.navbar {
+  background: var(--primary);
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--secondary);
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.btn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.6rem 1.2rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+}
+
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 1rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+#searchBar {
+  width: 300px;
+  padding: 10px 15px;
+  border: 2px solid #4a90e2;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+}
+
+#searchBar:focus {
+  border-color: #1c5fb8;
+  box-shadow: 0 0 5px rgba(28, 95, 184, 0.5);
+}

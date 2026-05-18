@@ -1,0 +1,40 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>ShoePee | Buyer Dashboard</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/buyer.css">
+  </head>
+  <body>
+    <div id="navbar"></div>
+    <section class="buyer-dashboard">
+      <input type="text" id="searchBar" placeholder="Search shoes...">
+      <a href="cart.html" class="cart-link">
+        🛒 Cart (<span id="cartCount">0</span>)
+      </a>
+    <div class="filter-wrapper">
+      <div class="filters">
+        <button class="btn" data-category="all">All</button>
+        <button class="btn" data-category="men">Men</button>
+        <button class="btn" data-category="women">Women</button>
+        <button class="btn" data-category="sports">Sports</button>
+      </div>
+      <div class="sort-wrapper">
+        <select id="sortSelect">
+          <option value="popular">🔥 Most Popular</option>
+          <option value="priceLow">Price: Low to High</option>
+          <option value="priceHigh">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+      
+      
+      <div id="productGrid" class="product-grid"></div>
+    </section>
+    <div id="footer"></div>
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/buyer.js"></script>
+  </body>
+  </html>

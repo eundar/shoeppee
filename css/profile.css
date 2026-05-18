@@ -1,0 +1,70 @@
+/* profile.css */
+
+.profile-page {
+  max-width: 500px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.profile-pic {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--primary);
+  margin-bottom: 1rem;
+  background: var(--bg);
+}
+
+#profileName {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+
+#profileRole {
+  font-size: 1rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+#extraInfo {
+  margin-bottom: 2rem;
+  text-align: left;
+  padding: 1rem;
+  background: var(--bg);
+  border-radius: var(--radius);
+}
+
+#extraInfo p {
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.profile-page .btn {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .profile-page {
+    margin: 2rem 1rem;
+    padding: 1.5rem;
+  }
+
+  .profile-pic {
+    width: 110px;
+    height: 110px;
+  }
+
+  #profileName {
+    font-size: 1.5rem;
+  }
+}
