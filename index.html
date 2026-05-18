@@ -5,26 +5,527 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ShoePee | Welcome</title>
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/global.css">
-  <link rel="stylesheet" href="css/auth.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Poppins', sans-serif; background: var(--bg); color: var(--text); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ── NAVBAR ── */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: var(--primary);
+      padding: 0 2rem;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 2px 12px rgba(255,111,60,.3);
+    }
+    .site-logo {
+      color: #fff; font-size: 1.5rem; font-weight: 800; letter-spacing: -.5px;
+    }
+    .site-logo span { opacity: .75; font-weight: 400; }
+    .site-nav-right { display: flex; align-items: center; gap: 1rem; }
+    .site-nav-link {
+      color: rgba(255,255,255,.85); font-size: .88rem; font-weight: 500; transition: color .2s;
+    }
+    .site-nav-link:hover { color: #fff; }
+    .nav-signup-btn {
+      background: #fff; color: var(--primary);
+      border: none; border-radius: var(--radius);
+      padding: .45rem 1.1rem;
+      font-family: 'Poppins', sans-serif; font-size: .88rem; font-weight: 600;
+      cursor: pointer; transition: .2s;
+    }
+    .nav-signup-btn:hover { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh; padding-top: 64px;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; gap: 3rem;
+      padding-left: 6vw; padding-right: 4vw;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,154,60,.22) 0%, transparent 70%);
+      top: -80px; right: -80px; pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute;
+      width: 380px; height: 380px;
+      background: radial-gradient(circle, rgba(255,111,60,.12) 0%, transparent 70%);
+      bottom: 40px; left: 10%; pointer-events: none;
+    }
+    .hero-text { position: relative; z-index: 1; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,111,60,.12); color: var(--primary);
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      padding: .35rem 1rem; border-radius: 100px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp .5s ease both;
+    }
+
+    .hero-title {
+      font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 800;
+      line-height: 1.1; letter-spacing: -.02em;
+      margin-bottom: 1.25rem;
+      animation: fadeUp .5s .1s ease both;
+    }
+    .hero-title .accent { color: var(--primary); }
+
+    .hero-desc {
+      font-size: .98rem; color: #666; line-height: 1.7;
+      max-width: 420px; margin-bottom: 2rem; font-weight: 400;
+      animation: fadeUp .5s .2s ease both;
+    }
+
+    .hero-actions {
+      display: flex; gap: 1rem; flex-wrap: wrap;
+      animation: fadeUp .5s .3s ease both;
+    }
+
+    .btn-lg {
+      border-radius: var(--radius);
+      padding: .85rem 2rem;
+      font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 600;
+      cursor: pointer; transition: .25s; display: inline-flex; align-items: center; gap: .4rem;
+      border: none;
+    }
+    .btn-lg-primary { background: var(--primary); color: #fff; }
+    .btn-lg-primary:hover { background: #e55a26; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,111,60,.4); }
+    .btn-lg-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+    .btn-lg-outline:hover { background: rgba(255,111,60,.08); transform: translateY(-2px); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 3rem;
+      animation: fadeUp .5s .4s ease both;
+    }
+    .stat-num { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+    .stat-label { font-size: .75rem; color: #888; margin-top: .1rem; }
+
+    /* HERO VISUAL */
+    .hero-visual {
+      position: relative; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      animation: fadeIn .7s .2s ease both;
+    }
+    .shoe-showcase { position: relative; width: 100%; max-width: 480px; height: 460px; }
+    .s-card {
+      position: absolute; background: #fff;
+      border-radius: 18px; box-shadow: 0 12px 40px rgba(0,0,0,.13);
+      overflow: hidden; transition: transform .4s ease;
+    }
+    .s-card:hover { transform: translateY(-8px) scale(1.02) !important; }
+    .s-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .s-card-info { padding: .7rem .9rem .85rem; }
+    .s-card-name { font-size: .8rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .s-card-price { font-size: .88rem; font-weight: 700; color: var(--primary); margin-top: .15rem; }
+
+    .s-card-main { width: 230px; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 3; }
+    .s-card-tl   { width: 170px; top: 4%; left: 0; transform: rotate(-8deg); z-index: 2; }
+    .s-card-br   { width: 170px; bottom: 4%; right: 0; transform: rotate(6deg); z-index: 2; }
+
+    .s-badge {
+      position: absolute; background: var(--primary); color: #fff;
+      font-size: .7rem; font-weight: 600; padding: .28rem .7rem; border-radius: 100px;
+    }
+    .s-badge-top  { top: 10%; right: 6%; animation: float 3s ease-in-out infinite; }
+    .s-badge-bot  { bottom: 20%; left: 3%; animation: float 3s 1.2s ease-in-out infinite; }
+
+    /* ── CATEGORIES ── */
+    .categories { background: var(--primary); padding: 2.5rem 6vw; }
+    .sec-header { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 1.5rem; }
+    .sec-title { font-size: 1.3rem; font-weight: 700; color: #fff; }
+    .sec-link { font-size: .85rem; font-weight: 500; color: rgba(255,255,255,.8); transition: color .2s; }
+    .sec-link:hover { color: #fff; }
+
+    .cat-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; }
+    .cat-card {
+      background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radius); padding: 1.4rem 1rem;
+      text-align: center; cursor: pointer; transition: .25s; color: #fff;
+    }
+    .cat-card:hover { background: rgba(255,255,255,.25); transform: translateY(-3px); }
+    .cat-icon { font-size: 2rem; margin-bottom: .5rem; }
+    .cat-name { font-size: .88rem; font-weight: 600; }
+    .cat-count { font-size: .73rem; opacity: .75; margin-top: .2rem; }
+
+    /* ── FEATURED ── */
+    .featured { padding: 4rem 6vw; }
+    .featured .sec-title { color: var(--text); }
+    .featured .sec-link  { color: var(--primary); }
+
+    .prod-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px,1fr)); gap: 1.25rem; }
+    .prod-card {
+      background: #fff; border-radius: var(--radius);
+      overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+      transition: .25s; cursor: pointer;
+    }
+    .prod-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,.13); }
+    .prod-card img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+    .prod-body { padding: .9rem 1rem 1rem; }
+    .prod-seller { font-size: .72rem; color: #999; margin-bottom: .2rem; }
+    .prod-rating { font-size: .73rem; color: #f0a500; margin-bottom: .3rem; }
+    .prod-name {
+      font-size: .88rem; font-weight: 600; line-height: 1.35; margin-bottom: .5rem;
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .prod-footer { display: flex; align-items: center; justify-content: space-between; }
+    .prod-price { font-size: 1rem; font-weight: 700; color: var(--primary); }
+    .prod-price small { font-size: .7rem; font-weight: 400; color: #888; }
+    .add-to-cart {
+      width: 32px; height: 32px; background: var(--primary); color: #fff;
+      border: none; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; transition: .2s;
+    }
+    .add-to-cart:hover { background: #e55a26; transform: scale(1.1); }
+
+    /* ── SPLIT CTA ── */
+    .split-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 0 6vw 4rem; }
+    .cta-panel {
+      border-radius: 16px; padding: 2.5rem 2rem; min-height: 220px;
+      display: flex; flex-direction: column; justify-content: space-between;
+      position: relative; overflow: hidden;
+    }
+    .cta-buyer  { background: var(--primary); color: #fff; }
+    .cta-seller { background: #1a1a2e; color: #fff; }
+    .cta-panel::after {
+      content: ''; position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+    .cta-label { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .6; margin-bottom: .4rem; }
+    .cta-title { font-size: 1.4rem; font-weight: 700; line-height: 1.2; }
+    .cta-desc  { font-size: .84rem; opacity: .8; line-height: 1.6; margin-top: .6rem; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: #fff; color: #1a1a1a;
+      border: none; border-radius: var(--radius);
+      padding: .6rem 1.4rem;
+      font-family: 'Poppins', sans-serif; font-size: .88rem; font-weight: 600;
+      cursor: pointer; transition: .2s; margin-top: 1.5rem; width: fit-content; position: relative; z-index: 1;
+    }
+    .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+
+    /* ── HOW IT WORKS ── */
+    .how { background: #fff; padding: 4rem 6vw; text-align: center; }
+    .how .sec-title { color: var(--text); font-size: 1.35rem; margin-bottom: .5rem; }
+    .how-sub { font-size: .88rem; color: #888; margin-bottom: 3rem; }
+    .steps-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 2rem; }
+    .step { padding: 1.5rem; position: relative; }
+    .step-num {
+      width: 50px; height: 50px; background: rgba(255,111,60,.12);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; font-size: 1.2rem; font-weight: 700; color: var(--primary);
+    }
+    .step h3 { font-size: .95rem; font-weight: 600; margin-bottom: .5rem; }
+    .step p  { font-size: .83rem; color: #888; line-height: 1.6; }
+    .step-arr { position: absolute; top: 2.4rem; right: -1rem; font-size: 1.2rem; color: #ddd; }
+    .step:last-child .step-arr { display: none; }
+
+    /* ── FOOTER ── */
+    .site-footer { background: #1a1a2e; color: rgba(255,255,255,.7); padding: 3rem 6vw 1.5rem; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem;
+    }
+    .footer-brand-logo { color: #fff; font-size: 1.35rem; font-weight: 800; display: inline-block; margin-bottom: .75rem; }
+    .footer-brand p { font-size: .83rem; line-height: 1.7; max-width: 210px; }
+    .footer-col h4 {
+      font-size: .75rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: rgba(255,255,255,.4); margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: .5rem; }
+    .footer-col a { font-size: .83rem; color: rgba(255,255,255,.65); transition: color .2s; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.1); padding-top: 1.25rem;
+      display: flex; align-items: center; justify-content: space-between; font-size: .78rem;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+    @keyframes float  { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-7px); } }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; padding: 100px 6vw 3rem; text-align: center; }
+      .hero-desc { margin: 0 auto 2rem; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-visual { display: none; }
+      .cat-grid { grid-template-columns: repeat(2,1fr); }
+      .split-cta { grid-template-columns: 1fr; }
+      .steps-row { grid-template-columns: 1fr; }
+      .step-arr { display: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .site-nav-link { display: none; }
+    }
+    @media (max-width: 500px) {
+      .footer-top { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: .5rem; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="auth-container">
-    <h1>Welcome to ShoePee</h1>
-    <p>Select where you want to go</p>
+  <!-- NAVBAR -->
+  <nav class="site-nav">
+    <a href="index.html" class="site-logo">Shoe<span>Pee</span></a>
+    <div class="site-nav-right">
+      <a href="buyer-dashboard.html" class="site-nav-link">Shop</a>
+      <a href="seller-dashboard.html" class="site-nav-link">Sell</a>
+      <a href="login.html" class="site-nav-link">Log in</a>
+      <a href="register.html"><button class="nav-signup-btn">Sign up</button></a>
+    </div>
+  </nav>
 
-    <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem;">
-      
-      <a href="login.html" class="btn">Login</a>
-      <a href="register.html" class="btn">Register</a>
-      <a href="buyer-dashboard.html" class="btn">Buyer Dashboard</a>
-      <a href="seller-dashboard.html" class="btn">Seller Dashboard</a>
-      <a href="profile.html" class="btn">Profile</a>
-
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <div class="hero-eyebrow">👟 New arrivals just dropped</div>
+      <h1 class="hero-title">
+        Find your perfect<br>
+        pair on <span class="accent">ShoePee</span>
+      </h1>
+      <p class="hero-desc">
+        Shop thousands of shoes from top brands and local sellers.
+        Great prices, curated picks, and a community built for footwear lovers.
+      </p>
+      <div class="hero-actions">
+        <a href="buyer-dashboard.html"><button class="btn-lg btn-lg-primary">Shop now →</button></a>
+        <a href="seller-dashboard.html"><button class="btn-lg btn-lg-outline">Start selling</button></a>
+      </div>
+      <div class="hero-stats">
+        <div><div class="stat-num">10+</div><div class="stat-label">Products listed</div></div>
+        <div><div class="stat-num">2.4k</div><div class="stat-label">Happy buyers</div></div>
+        <div><div class="stat-num">500+</div><div class="stat-label">Active sellers</div></div>
+      </div>
     </div>
 
+    <div class="hero-visual">
+      <div class="shoe-showcase">
+        <div class="s-card s-card-tl">
+          <img src="assets/images/shoe9.jpg" alt="ALDO Oxford">
+          <div class="s-card-info">
+            <div class="s-card-name">ALDO Oxford Shoes</div>
+            <div class="s-card-price">₱1,200</div>
+          </div>
+        </div>
+        <div class="s-card s-card-main">
+          <img src="assets/images/shoe1.jpg" alt="Nike Ultraboost">
+          <div class="s-card-info">
+            <div class="s-card-name">Nike Ultraboost</div>
+            <div class="s-card-price">₱4,121</div>
+          </div>
+        </div>
+        <div class="s-card s-card-br">
+          <img src="assets/images/shoe4.jpg" alt="New Balance 327">
+          <div class="s-card-info">
+            <div class="s-card-name">New Balance 327</div>
+            <div class="s-card-price">₱1,999</div>
+          </div>
+        </div>
+        <div class="s-badge s-badge-top">✨ New</div>
+        <div class="s-badge s-badge-bot">🔥 Best Seller</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="categories">
+    <div class="sec-header">
+      <h2 class="sec-title">Shop by category</h2>
+      <a href="buyer-dashboard.html" class="sec-link">See all →</a>
+    </div>
+    <div class="cat-grid">
+      <a href="buyer-dashboard.html" class="cat-card">
+        <div class="cat-icon">👟</div>
+        <div class="cat-name">All Shoes</div>
+        <div class="cat-count">10 products</div>
+      </a>
+      <a href="buyer-dashboard.html" class="cat-card">
+        <div class="cat-icon">👨</div>
+        <div class="cat-name">Men's</div>
+        <div class="cat-count">4 products</div>
+      </a>
+      <a href="buyer-dashboard.html" class="cat-card">
+        <div class="cat-icon">👩</div>
+        <div class="cat-name">Women's</div>
+        <div class="cat-count">5 products</div>
+      </a>
+      <a href="buyer-dashboard.html" class="cat-card">
+        <div class="cat-icon">🏃</div>
+        <div class="cat-name">Sports</div>
+        <div class="cat-count">1 product</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section class="featured">
+    <div class="sec-header">
+      <h2 class="sec-title">Featured picks</h2>
+      <a href="buyer-dashboard.html" class="sec-link">View all →</a>
+    </div>
+    <div class="prod-grid" id="featuredGrid"></div>
+  </section>
+
+  <!-- SPLIT CTA -->
+  <div class="split-cta">
+    <div class="cta-panel cta-buyer">
+      <div>
+        <div class="cta-label">For shoppers</div>
+        <div class="cta-title">Discover the perfect shoe for every occasion</div>
+        <div class="cta-desc">Browse hundreds of styles. Filter by brand, size, and price to find your match.</div>
+      </div>
+      <a href="buyer-dashboard.html"><button class="cta-btn">Browse shoes →</button></a>
+    </div>
+    <div class="cta-panel cta-seller">
+      <div>
+        <div class="cta-label">For sellers</div>
+        <div class="cta-title">Turn your shoe inventory into income</div>
+        <div class="cta-desc">List your products in minutes. Reach thousands of buyers ready to purchase.</div>
+      </div>
+      <a href="seller-dashboard.html"><button class="cta-btn">Open your shop →</button></a>
+    </div>
   </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how">
+    <h2 class="sec-title">How ShoePee works</h2>
+    <p class="how-sub">Simple, fast, and hassle-free.</p>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Create an account</h3>
+        <p>Sign up as a buyer or seller in seconds. No complicated setup — just your name, email, and you're in.</p>
+        <div class="step-arr">→</div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Browse or list shoes</h3>
+        <p>Shop by category, brand, or price. Sellers can list products instantly from the seller dashboard.</p>
+        <div class="step-arr">→</div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Buy, sell & repeat</h3>
+        <p>Add to cart and checkout in a click, or manage orders and track your sales from your dashboard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-brand-logo">ShoePee</a>
+        <p>Your go-to online marketplace for quality footwear from trusted local and brand sellers.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="buyer-dashboard.html">All shoes</a></li>
+          <li><a href="buyer-dashboard.html">Men's</a></li>
+          <li><a href="buyer-dashboard.html">Women's</a></li>
+          <li><a href="buyer-dashboard.html">Sports</a></li>
+          <li><a href="cart.html">My cart 🛒</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Sell</h4>
+        <ul>
+          <li><a href="seller-dashboard.html">Seller dashboard</a></li>
+          <li><a href="register.html">Create a shop</a></li>
+          <li><a href="profile.html">My profile</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Account</h4>
+        <ul>
+          <li><a href="login.html">Log in</a></li>
+          <li><a href="register.html">Register</a></li>
+          <li><a href="profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 ShoePee. All rights reserved.</span>
+      <span>Made with 🧡 for shoe lovers</span>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script>
+    // Render top 4 featured products sorted by popularity
+    const featured = [...products]
+      .sort((a, b) => (b.purchases * 10 + b.rating) - (a.purchases * 10 + a.rating))
+      .slice(0, 4);
+
+    const grid = document.getElementById('featuredGrid');
+
+    featured.forEach(p => {
+      const stars = p.rating
+        ? '★'.repeat(Math.round(p.rating)) + '☆'.repeat(5 - Math.round(p.rating))
+        : '';
+
+      const card = document.createElement('div');
+      card.className = 'prod-card';
+      card.innerHTML = `
+        <img src="${p.image}" alt="${p.name}" loading="lazy">
+        <div class="prod-body">
+          <div class="prod-seller">${p.seller}</div>
+          ${stars ? `<div class="prod-rating">${stars} <span style="color:#888;font-size:.68rem">(${p.reviews})</span></div>` : ''}
+          <div class="prod-name">${p.name}</div>
+          <div class="prod-footer">
+            <div class="prod-price">₱${p.price.toLocaleString()} <small>/ pair</small></div>
+            <button class="add-to-cart" title="Add to cart">+</button>
+          </div>
+        </div>
+      `;
+
+      card.querySelector('.add-to-cart').addEventListener('click', e => {
+        e.stopPropagation();
+        addToCart(p);
+        const btn = e.currentTarget;
+        btn.textContent = '✓';
+        btn.style.background = '#2e7d32';
+        setTimeout(() => { btn.textContent = '+'; btn.style.background = ''; }, 1300);
+      });
+
+      card.addEventListener('click', () => { window.location.href = 'buyer-dashboard.html'; });
+      grid.appendChild(card);
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.prod-card, .cat-card, .step, .cta-panel').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(18px)';
+      el.style.transition = 'opacity .45s ease, transform .45s ease';
+      observer.observe(el);
+    });
+  </script>
 
 </body>
 </html>
