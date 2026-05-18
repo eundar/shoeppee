@@ -2,18 +2,96 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Your Cart</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart — ShopNest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 
 <div id="navbar"></div>
 
-<section class="cart-page">
-  <h2>Your Cart</h2>
-  <div id="cartItems"></div>
-  <h3 id="cartTotal"></h3>
-</section>
+<main class="cart-page">
+
+  <!-- LEFT: Item List -->
+  <section class="cart-left">
+
+    <!-- Select All Bar -->
+    <div class="cart-select-bar">
+      <label class="custom-check">
+        <input type="checkbox" id="selectAll">
+        <span class="checkmark"></span>
+        <span class="check-label">Select All (<span id="itemCount">0</span> items)</span>
+      </label>
+      <button class="btn-delete-selected" id="deleteSelected">🗑 Delete Selected</button>
+    </div>
+
+    <!-- Cart Items Container -->
+    <div id="cartItems"></div>
+
+    <!-- Empty State -->
+    <div class="empty-cart" id="emptyState">
+      <div class="empty-icon">🛒</div>
+      <p class="empty-title">Your cart is empty</p>
+      <p class="empty-sub">Looks like you haven't added anything yet.</p>
+      <a href="index.html" class="btn-shop-now">Start Shopping</a>
+    </div>
+
+  </section>
+
+  <!-- RIGHT: Order Summary -->
+  <aside class="cart-summary">
+    <div class="summary-card">
+      <h3 class="summary-title">Order Summary</h3>
+
+      <div class="summary-row">
+        <span>Subtotal (<span id="summaryCount">0</span> items)</span>
+        <span id="summarySubtotal">₱0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping Fee</span>
+        <span id="summaryShipping" class="text-green">FREE</span>
+      </div>
+      <div class="summary-row discount-row" id="discountRow">
+        <span>Voucher Discount</span>
+        <span id="summaryDiscount" class="text-accent">-₱0.00</span>
+      </div>
+
+      <div class="summary-divider"></div>
+
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span id="cartTotal">₱0.00</span>
+      </div>
+
+      <!-- Voucher -->
+      <div class="voucher-box">
+        <input type="text" id="voucherInput" class="voucher-input" placeholder="Enter voucher code">
+        <button class="btn-voucher" id="applyVoucher">Apply</button>
+      </div>
+      <p class="voucher-msg" id="voucherMsg"></p>
+
+      <button class="btn-checkout" id="checkoutBtn">
+        Checkout (<span id="checkoutCount">0</span>)
+      </button>
+
+      <div class="secure-note">🔒 Secured Checkout</div>
+    </div>
+
+    <!-- Savings Banner -->
+    <div class="savings-banner" id="savingsBanner">
+      🎉 You're saving <strong id="savingsAmount">₱0.00</strong> on this order!
+    </div>
+  </aside>
+
+</main>
+
+<div id="footer"></div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast"></div>
 
 <script src="js/utils.js"></script>
 <script src="js/cart.js"></script>
