@@ -6,6 +6,11 @@ const products = [
     category: "sports",
     image: "assets/images/shoe2.jpg",
     seller: "Nike",
+
+    purchases: 0,
+    rating: 0,
+    reviews: 0,
+    stock: 10,
   },
   {
     id: 2,
@@ -18,6 +23,7 @@ const products = [
     purchases: 0,
     rating: 0,
     reviews: 0,
+    stock: 120,
   },
   {
     id: 3,
@@ -30,6 +36,7 @@ const products = [
     purchases: 35,
     rating: 4.8,
     reviews: 87,
+    stock: 32,
   },
   {
     id: 4,
@@ -42,6 +49,7 @@ const products = [
     purchases: 30,
     rating: 4,
     reviews: 17,
+    stock: 13,
   },
   {
     id: 5,
@@ -54,6 +62,7 @@ const products = [
     purchases: 0,
     rating: 0,
     reviews: 0,
+    stock: 10,
   },
   {
     id: 6,
@@ -63,9 +72,10 @@ const products = [
     image: "assets/images/shoe6.jpg",
     seller: "MangBen",
 
-    purchases: 30,
+    purchases: 2,
     rating: 4,
     reviews: 27,
+    stock: 10,
   },
   {
     id: 7,
@@ -78,6 +88,7 @@ const products = [
     purchases: 0,
     rating: 0,
     reviews: 0,
+    stock: 10,
   },
   {
     id: 8,
@@ -90,6 +101,7 @@ const products = [
     purchases: 0,
     rating: 0,
     reviews: 0,
+    stock: 10,
   },
   {
     id: 9,
@@ -102,6 +114,7 @@ const products = [
     purchases: 0,
     rating: 0,
     reviews: 0,
+    stock: 10,
   },
   {
     id: 10,
@@ -114,6 +127,7 @@ const products = [
     purchases: 0,
     rating: 0,
     reviews: 0,
+    stock: 10,
   },
   
 ];

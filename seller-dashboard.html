@@ -6,15 +6,83 @@
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/seller.css">
 </head>
+
 <body>
-  <div id="navbar"></div>
-  <section class="seller-dashboard">
-    <h2>Your Products</h2>
-    <button class="btn" id="addProductBtn">Add Product</button>
-    <div id="productList" class="product-list"></div>
-  </section>
-  <div id="footer"></div>
-  <script src="js/utils.js"></script>
-  <script src="js/seller.js"></script>
+
+<div id="navbar"></div>
+
+<section class="seller-dashboard">
+
+  <h2 class="dash-title">Seller Dashboard</h2>
+
+  <!-- Stats -->
+  <div class="dash-stats">
+    <div class="stat-card">
+      <h3>Total Products</h3>
+      <p id="totalProducts">0</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Sales</h3>
+      <p id="totalSales">₱0</p>
+    </div>
+    <div class="stat-card">
+      <h3>Total Orders</h3>
+      <p id="totalOrders">0</p>
+    </div>
+    <div class="stat-card warning">
+      <h3>Low Stock</h3>
+      <p id="lowStockCount">0</p>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="product-controls">
+    <button class="btn-primary" id="addProductBtn">Add Product</button>
+    <input type="text" id="searchProduct" placeholder="Search your shoes...">
+  </div>
+
+  <!-- Product List -->
+  <div id="productList" class="product-list"></div>
+
+</section>
+
+<div id="footer"></div>
+
+<script src="js/data.js"></script> 
+<script src="js/utils.js"></script>
+<script src="js/seller.js"></script>
+
+<!-- Add Product Modal -->
+<div class="modal" id="productModal">
+  <div class="modal-content">
+    <h3>Add New Product</h3>
+
+    <input type="text" id="pName" placeholder="Product name">
+    <input type="number" id="pPrice" placeholder="Price">
+    <input type="text" id="pCategory" placeholder="Category (men/women)">
+    <input type="text" id="pImage" placeholder="Image path (assets/images/...)">
+    <input type="number" id="pStock" placeholder="Stock quantity">
+
+    <div class="modal-actions">
+      <button id="saveProduct" class="btn-primary">Save</button>
+      <button id="closeModal">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Product View Modal -->
+<div class="modal" id="viewModal">
+  <div class="modal-content view-modal">
+    <span class="close-view" id="closeView">&times;</span>
+
+    <img id="viewImage" class="view-img">
+
+    <h3 id="viewName"></h3>
+    <p id="viewPrice"></p>
+    <p id="viewStock"></p>
+    <p id="viewPurchases"></p>
+    <p id="viewCategory"></p>
+  </div>
+</div>
 </body>
 </html>
