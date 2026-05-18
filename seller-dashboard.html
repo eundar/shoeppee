@@ -15,7 +15,6 @@
 
   <h2 class="dash-title">Seller Dashboard</h2>
 
-  <!-- Stats -->
   <div class="dash-stats">
     <div class="stat-card">
       <h3>Total Products</h3>
@@ -35,13 +34,11 @@
     </div>
   </div>
 
-  <!-- Controls -->
   <div class="product-controls">
     <button class="btn-primary" id="addProductBtn">Add Product</button>
     <input type="text" id="searchProduct" placeholder="Search your shoes...">
   </div>
 
-  <!-- Product List -->
   <div id="productList" class="product-list"></div>
 
 </section>
@@ -60,11 +57,10 @@
     <input type="text" id="pName" placeholder="Product name">
     <input type="number" id="pPrice" placeholder="Price">
 
-    <!-- Category Select -->
     <select id="pCategory">
       <option value="" disabled selected>Select Category</option>
       <option value="men">Men</option>
-      <option value="women">Woment</option>
+      <option value="women">Women</option>
       <option value="sport">Sport</option>
     </select>
 
@@ -78,19 +74,22 @@
   </div>
 </div>
 
-<!-- Product View Modal -->
+<!-- View Product Modal -->
 <div class="modal" id="viewModal">
   <div class="modal-content view-modal">
     <span class="close-view" id="closeView">&times;</span>
 
     <img id="viewImage" class="view-img">
-
     <h3 id="viewName"></h3>
     <p id="viewPrice"></p>
     <p id="viewStock"></p>
     <p id="viewPurchases"></p>
     <p id="viewCategory"></p>
+
+    <!-- ✅ remove button inside -->
+    <button id="removeProductBtn" class="btn-remove">Remove Product</button>
   </div>
 </div>
+
 </body>
 </html>

@@ -273,3 +273,17 @@
   font-size: 22px;
   cursor: pointer;
 }
+
+/* ===== Remove Product Modal Button ===== */
+.btn-remove{
+  margin-top: 12px;
+  padding: 10px 14px;
+  border: none;
+  background: #c0392b;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.btn-remove:hover{
+  opacity: 0.9;
+}

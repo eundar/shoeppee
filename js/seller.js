@@ -14,7 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeModal = document.getElementById("closeModal");
   const saveProduct = document.getElementById("saveProduct");
 
-  // ===== GET PRODUCTS (data.js + added products) =====
+  const viewModal = document.getElementById("viewModal");
+  const closeView = document.getElementById("closeView");
+  const removeBtn = document.getElementById("removeProductBtn");
+
+  let currentProductId = null;
+
   function getAllProducts() {
     const added = JSON.parse(localStorage.getItem("addedProducts")) || [];
     return [...products, ...added];
@@ -24,7 +29,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return getAllProducts().filter(p => p.seller === "MangBen");
   }
 
-  // ===== STATS =====
   function renderStats(list) {
     totalProductsEl.textContent = list.length;
 
@@ -38,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
     totalOrdersEl.textContent = totalOrders;
   }
 
-  // ===== RENDER =====
   function renderProducts(list) {
     productList.innerHTML = "";
 
@@ -65,14 +68,11 @@ document.addEventListener("DOMContentLoaded", () => {
       card.addEventListener("click", () => openViewModal(p));
       productList.appendChild(card);
     });
-
   }
 
-  // ===== VIEW MODAL =====
-  const viewModal = document.getElementById("viewModal");
-  const closeView = document.getElementById("closeView");
-
   function openViewModal(p) {
+    currentProductId = p.id;
+
     document.getElementById("viewImage").src = p.image;
     document.getElementById("viewName").textContent = p.name;
     document.getElementById("viewPrice").textContent = "Price: ₱" + p.price.toLocaleString();
@@ -88,7 +88,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === viewModal) viewModal.style.display = "none";
   };
 
-  // ===== SEARCH =====
   searchInput.addEventListener("input", () => {
     const val = searchInput.value.toLowerCase();
     const filtered = getMyProducts().filter(p =>
@@ -98,11 +97,9 @@ document.addEventListener("DOMContentLoaded", () => {
     renderStats(filtered);
   });
 
-  // ===== MODAL =====
   addBtn.onclick = () => modal.style.display = "flex";
   closeModal.onclick = () => modal.style.display = "none";
 
-  // ===== SAVE PRODUCT =====
   saveProduct.onclick = () => {
     const newProduct = {
       id: Date.now(),
@@ -128,7 +125,23 @@ document.addEventListener("DOMContentLoaded", () => {
     renderStats(myProducts);
   };
 
-  // ===== INITIAL LOAD =====
+  // ✅ REMOVE PRODUCT
+  removeBtn.addEventListener("click", () => {
+    if (!currentProductId) return;
+
+    let added = JSON.parse(localStorage.getItem("addedProducts")) || [];
+    added = added.filter(p => p.id !== currentProductId);
+    localStorage.setItem("addedProducts", JSON.stringify(added));
+
+    viewModal.style.display = "none";
+
+    const myProducts = getMyProducts();
+    renderProducts(myProducts);
+    renderStats(myProducts);
+
+    currentProductId = null;
+  });
+
   const myProducts = getMyProducts();
   renderProducts(myProducts);
   renderStats(myProducts);
