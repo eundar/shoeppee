@@ -156,7 +156,113 @@
   letter-spacing: 0.3px;
 }
 
-/* ===== Add product Modal ===== */
+/* ===== Modern View Modal ===== */
+.modern-view {
+  width: 520px;
+  max-width: 95%;
+  border-radius: 18px;
+  overflow: hidden;
+  padding: 0;
+  background: #ffffff;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 22px;
+  border-bottom: 1px solid #eee;
+  background: #fafafa;
+}
+
+.view-header h3 {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.close-view {
+  font-size: 24px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.close-view:hover {
+  transform: scale(1.2);
+}
+
+/* Body */
+.view-body {
+  padding: 22px;
+  text-align: center;
+}
+
+.view-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 14px;
+  margin-bottom: 18px;
+}
+
+.view-name {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+/* Info Grid */
+.view-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.info-box {
+  background: #f6f8fb;
+  padding: 14px;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.info-box span {
+  font-size: 12px;
+  color: #888;
+}
+
+.info-box p {
+  margin-top: 6px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+/* Actions */
+.view-actions {
+  padding: 18px 22px;
+  border-top: 1px solid #eee;
+  background: #fafafa;
+}
+
+.btn-remove {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #e74c3c;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-remove:hover {
+  background: #c0392b;
+}
+
+/* ===== Add Product Form Modal ===== */
 .modal {
   position: fixed;
   inset: 0;
@@ -166,70 +272,80 @@
   align-items: center;
   padding: 20px;
   z-index: 1000;
+  backdrop-filter: blur(4px);
 }
 
 .modal-content {
   background: #fff;
   width: 100%;
-  max-width: 380px;
-  padding: 24px;
-  border-radius: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  max-width: 420px;
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.15);
   animation: modalFade 0.25s ease;
 }
 
 .modal-content h3 {
-  margin: 0 0 10px;
-  font-size: 22px;
-  color: #222;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 22px;
+  color: #111;
+  text-align: center;
 }
 
-.modal-content input,
-.modal-content select {
+/* Form */
+#addProductForm {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Inputs */
+#addProductForm input,
+#addProductForm select {
   width: 100%;
-  padding: 12px;
-  border-radius: 10px;
+  padding: 13px 14px;
   border: 1px solid #dcdcdc;
-  font-size: 15px;
+  border-radius: 12px;
+  font-size: 14px;
+  background: #fafafa;
+  transition: all 0.2s ease;
   outline: none;
-  transition: 0.2s ease;
   box-sizing: border-box;
 }
 
-.modal-content input:focus,
-.modal-content select:focus {
+#addProductForm input:focus,
+#addProductForm select:focus {
   border-color: #111;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.08);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(0,0,0,0.06);
 }
 
+/* Placeholder */
+#addProductForm input::placeholder {
+  color: #999;
+}
+
+/* Modal Actions */
 .modal-actions {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   margin-top: 10px;
 }
 
+/* Buttons */
 .modal-actions button {
   flex: 1;
-  padding: 12px;
+  padding: 13px;
+  border-radius: 12px;
   border: none;
-  border-radius: 10px;
-  cursor: pointer;
+  font-size: 14px;
   font-weight: 600;
+  cursor: pointer;
   transition: 0.2s ease;
 }
 
-.btn-primary {
-  background: #111;
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background: #222;
-}
-
+/* Cancel */
 #closeModal {
   background: #f1f1f1;
   color: #333;
@@ -239,51 +355,14 @@
   background: #e4e4e4;
 }
 
+/* Animation */
 @keyframes modalFade {
   from {
     opacity: 0;
-    transform: translateY(-12px) scale(0.98);
+    transform: translateY(-15px) scale(0.97);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
   }
-}
-
-
-/* ===== View Product Modal ===== */
-.view-modal {
-  width: 420px;
-  position: relative;
-  text-align: center;
-}
-
-.view-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 10px;
-  margin-bottom: 15px;
-}
-
-.close-view {
-  position: absolute;
-  top: 12px;
-  right: 16px;
-  font-size: 22px;
-  cursor: pointer;
-}
-
-/* ===== Remove Product Modal Button ===== */
-.btn-remove{
-  margin-top: 12px;
-  padding: 10px 14px;
-  border: none;
-  background: #c0392b;
-  color: #fff;
-  cursor: pointer;
-  border-radius: 6px;
-}
-.btn-remove:hover{
-  opacity: 0.9;
 }

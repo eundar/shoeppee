@@ -54,40 +54,72 @@
   <div class="modal-content">
     <h3>Add New Product</h3>
 
-    <input type="text" id="pName" placeholder="Product name">
-    <input type="number" id="pPrice" placeholder="Price">
+    <!-- ✅ make this a form -->
+    <form id="addProductForm">
 
-    <select id="pCategory">
-      <option value="" disabled selected>Select Category</option>
-      <option value="men">Men</option>
-      <option value="women">Women</option>
-      <option value="sport">Sport</option>
-    </select>
+      <input type="text" id="pName" placeholder="Product name" required>
+      <input type="number" id="pPrice" placeholder="Price" required>
 
-    <input type="text" id="pImage" placeholder="Image path (assets/images/...)">
-    <input type="number" id="pStock" placeholder="Stock quantity">
+      <select id="pCategory" required>
+        <option value="" disabled selected>Select Category</option>
+        <option value="men">Men</option>
+        <option value="women">Women</option>
+        <option value="sport">Sport</option>
+      </select>
 
-    <div class="modal-actions">
-      <button id="saveProduct" class="btn-primary">Save</button>
-      <button id="closeModal">Cancel</button>
-    </div>
+      <input type="text" id="pImage" placeholder="Image path (assets/images/...)" required>
+      <input type="number" id="pStock" placeholder="Stock quantity" required>
+
+      <div class="modal-actions">
+        <button type="submit" id="saveProduct" class="btn-primary">Save</button>
+        <button type="button" id="closeModal">Cancel</button>
+      </div>
+
+    </form>
   </div>
 </div>
 
 <!-- View Product Modal -->
 <div class="modal" id="viewModal">
-  <div class="modal-content view-modal">
-    <span class="close-view" id="closeView">&times;</span>
+  <div class="modal-content view-modal modern-view">
 
-    <img id="viewImage" class="view-img">
-    <h3 id="viewName"></h3>
-    <p id="viewPrice"></p>
-    <p id="viewStock"></p>
-    <p id="viewPurchases"></p>
-    <p id="viewCategory"></p>
+    <div class="view-header">
+      <h3>Product Details</h3>
+      <span class="close-view" id="closeView">&times;</span>
+    </div>
 
-    <!-- ✅ remove button inside -->
-    <button id="removeProductBtn" class="btn-remove">Remove Product</button>
+    <div class="view-body">
+      <img id="viewImage" class="view-img">
+
+      <h2 id="viewName" class="view-name"></h2>
+
+      <div class="view-grid">
+        <div class="info-box">
+          <span>Price</span>
+          <p id="viewPrice"></p>
+        </div>
+
+        <div class="info-box">
+          <span>Stock</span>
+          <p id="viewStock"></p>
+        </div>
+
+        <div class="info-box">
+          <span>Purchases</span>
+          <p id="viewPurchases"></p>
+        </div>
+
+        <div class="info-box">
+          <span>Category</span>
+          <p id="viewCategory"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="view-actions">
+      <button id="removeProductBtn" class="btn-remove">Remove Product</button>
+    </div>
+
   </div>
 </div>
 

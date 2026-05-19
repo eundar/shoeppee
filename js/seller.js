@@ -100,7 +100,9 @@ document.addEventListener("DOMContentLoaded", () => {
   addBtn.onclick = () => modal.style.display = "flex";
   closeModal.onclick = () => modal.style.display = "none";
 
-  saveProduct.onclick = () => {
+  const addProductForm = document.getElementById("addProductForm");
+  addProductForm.onsubmit = (e) => {
+    e.preventDefault();
     const newProduct = {
       id: Date.now(),
       name: document.getElementById("pName").value,
@@ -117,6 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const added = JSON.parse(localStorage.getItem("addedProducts")) || [];
     added.push(newProduct);
     localStorage.setItem("addedProducts", JSON.stringify(added));
+
+    addProductForm.reset();
 
     modal.style.display = "none";
 
