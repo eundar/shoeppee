@@ -5,6 +5,7 @@
   <title>ShoePee | Seller Dashboard</title>
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/seller.css">
+  <link rel="stylesheet" href="css/sellerOrder.css">
 </head>
 
 <body>
@@ -35,13 +36,17 @@
   </div>
 
   <div class="product-controls">
-    <button class="btn-primary" id="addProductBtn">Add Product</button>
+    <div style="display:flex; gap:10px;">
+      <button class="btn-primary" id="addProductBtn">Add Product</button>
+      <button class="btn-orders" id="openOrdersBtn">View Orders</button>
+    </div>
     <input type="text" id="searchProduct" placeholder="Search your shoes...">
   </div>
 
   <div id="productList" class="product-list"></div>
 
 </section>
+<div id="sellerOrdersComponent"></div>
 <div id="salesForecast"></div>
 <div id="footer"></div>
 
@@ -50,8 +55,39 @@
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/salesforecast.js"></script>
-
+<script src="js/sellerOrder.js"></script>
 <script src="js/seller.js"></script>
+
+
+<!-- Orders Modal -->
+<div class="modal" id="ordersModal">
+  <div class="modal-content orders-modal">
+
+    <div class="view-header">
+      <h3>📦 Current Orders</h3>
+      <span class="close-view" id="closeOrders">&times;</span>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="orders-tabs">
+      <button class="orders-tab active" data-status="all">All</button>
+      <button class="orders-tab" data-status="pending">Pending</button>
+      <button class="orders-tab" data-status="processing">Processing</button>
+      <button class="orders-tab" data-status="shipped">Shipped</button>
+      <button class="orders-tab" data-status="completed">Completed</button>
+    </div>
+
+    <div class="orders-list" id="ordersList">
+      <!-- Populated by JS -->
+    </div>
+
+    <div class="orders-empty" id="ordersEmpty" style="display:none;">
+      <span>📭</span>
+      <p>No orders found</p>
+    </div>
+
+  </div>
+</div>
 
 <!-- Add Product Modal -->
 <div class="modal" id="productModal">

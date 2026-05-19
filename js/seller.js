@@ -150,6 +150,21 @@ document.addEventListener("DOMContentLoaded", () => {
     currentProductId = null;
   });
 
+  // ===== ORDERS MODAL =====
+document.addEventListener("click", (e) => {
+  if (e.target.id === "openOrdersBtn") {
+    document.getElementById("ordersModal").style.display = "flex";
+  }
+
+  if (e.target.id === "closeOrders") {
+    document.getElementById("ordersModal").style.display = "none";
+  }
+
+  if (e.target.id === "ordersModal") {
+    e.target.style.display = "none";
+  }
+});
+
   const myProducts = getMyProducts();
   renderProducts(myProducts);
   renderStats(myProducts);
