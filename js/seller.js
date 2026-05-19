@@ -1,5 +1,9 @@
 loadComponent("navbar", "navbar.html");
 loadComponent("footer", "footer.html");
+loadComponent("salesForecast", "salesforecast.html")
+  .then(() => {
+    initSalesChart();
+  });
 
 document.addEventListener("DOMContentLoaded", () => {
   const productList = document.getElementById("productList");

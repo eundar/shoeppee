@@ -1,0 +1,47 @@
+<!-- SALES FORECAST SECTION -->
+<section class="sales-forecast">
+
+  <div class="forecast-header">
+    <h2>Sales Forecast</h2>
+
+    <select id="forecastRange">
+      <option value="7">Last 7 Days</option>
+      <option value="30" selected>Last 30 Days</option>
+      <option value="90">Last 3 Months</option>
+    </select>
+  </div>
+
+  <div class="forecast-cards">
+
+    <div class="forecast-card">
+      <h3>Projected Revenue</h3>
+      <p id="forecastRevenue">₱125,000</p>
+      <span class="up">+12% from last month</span>
+    </div>
+
+    <div class="forecast-card">
+      <h3>Expected Orders</h3>
+      <p id="forecastOrders">320</p>
+      <span class="up">+8% growth</span>
+    </div>
+
+    <div class="forecast-card">
+      <h3>Best Seller</h3>
+      <p id="bestSeller">Lacoste Women's Carnaby Set white</p>
+      <span>Most purchased shoe</span>
+    </div>
+
+    <div class="forecast-card warning">
+      <h3>Restock Alert</h3>
+      <p id="restockForecast">4 Items</p>
+      <span>Likely out of stock soon</span>
+    </div>
+
+  </div>
+
+  <!-- CHART -->
+  <div class="chart-container">
+    <canvas id="salesChart"></canvas>
+  </div>
+
+</section>
