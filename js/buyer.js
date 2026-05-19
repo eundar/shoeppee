@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <div class="product-info">
           <h3>${prod.name}</h3>
-          <p>$${prod.price}</p>
+          <p>₱${prod.price}</p>
           <button class="btn add-to-cart">Add to Cart</button>
         </div>
       `;
