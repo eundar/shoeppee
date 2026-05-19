@@ -353,6 +353,18 @@
   font-weight: 700;
   margin: 4px 0 12px;
 }
+
+.modal-seller {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.modal-seller span {
+  font-weight: 600;
+  color: #ff7a00;
+}
+
 .modal-meta {
   display: flex;
   align-items: center;

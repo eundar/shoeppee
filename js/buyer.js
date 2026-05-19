@@ -23,7 +23,9 @@ document.addEventListener("DOMContentLoaded", () => {
       <div class="modal-body">
         <span class="modal-category" id="mCategory"></span>
         <h2 class="modal-title" id="mName"></h2>
-
+        <div class="modal-seller">
+          Sold by <span id="mSeller"></span>
+        </div>
         <div class="modal-meta">
           <span class="modal-price" id="mPrice"></span>
           <div class="modal-rating">
@@ -50,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function openModal(prod) {
     document.getElementById("mImg").src = prod.image;
     document.getElementById("mImg").alt = prod.name;
+    document.getElementById("mSeller").textContent = prod.seller || "Unknown seller";
     document.getElementById("mCategory").textContent =
       prod.category.charAt(0).toUpperCase() + prod.category.slice(1);
     document.getElementById("mName").textContent = prod.name;
