@@ -3,17 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Cart</title>
+  <title>ShoePee | Your Cart</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 
-<div id="navbar"></div>
+<div id="navbar"></div> 
+
+<!-- ✅ Back to dashboard -->
+<button class="btn-back-dashboard" onclick="goToDashboard()">
+    ← Back to Dashboard
+</button>
+
+<button class="btn-back" onclick="goToOrders()">
+  ← Back to My Orders
+</button>
 
 <main class="cart-page">
+
+ 
+  
 
   <!-- LEFT: Item List -->
   <section class="cart-left">
@@ -23,12 +37,16 @@
       <label class="custom-check">
         <input type="checkbox" id="selectAll">
         <span class="checkmark"></span>
-        <span class="check-label">Select All (<span id="itemCount">0</span> items)</span>
+        <span class="check-label">
+          Select All (<span id="itemCount">0</span> items)
+        </span>
       </label>
-      <button class="btn-delete-selected" id="deleteSelected">🗑 Delete Selected</button>
+      <button class="btn-delete-selected" id="deleteSelected">
+        🗑 Delete Selected
+      </button>
     </div>
 
-    <!-- Cart Items Container -->
+    <!-- Cart Items -->
     <div id="cartItems"></div>
 
     <!-- Empty State -->
@@ -50,10 +68,12 @@
         <span>Subtotal (<span id="summaryCount">0</span> items)</span>
         <span id="summarySubtotal">₱0.00</span>
       </div>
+
       <div class="summary-row">
         <span>Shipping Fee</span>
         <span id="summaryShipping" class="text-green">FREE</span>
       </div>
+
       <div class="summary-row discount-row" id="discountRow">
         <span>Voucher Discount</span>
         <span id="summaryDiscount" class="text-accent">-₱0.00</span>
@@ -90,11 +110,24 @@
 
 <div id="footer"></div>
 
-<!-- Toast Notification -->
+<!-- Toast -->
 <div class="toast" id="toast"></div>
 
 <script src="js/utils.js"></script>
 <script src="js/cart.js"></script>
+
+<script>
+  loadComponent("navbar", "navbar.html");
+  loadComponent("footer", "footer.html");
+
+  function goToDashboard() {
+    window.location.href = "buyer-dashboard.html";
+  }
+
+  function goToOrders() {
+    window.location.href = "buyerOrder.html";
+  }
+</script>
 
 </body>
 </html>

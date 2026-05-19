@@ -9,7 +9,7 @@ const users = [
   {
     fullname: "Jane Smith",
     email: "jane.smith@example.com",
-    username: "janesmith",
+    username: "MangBen",
     password: "password456",
     role: "seller"
   }

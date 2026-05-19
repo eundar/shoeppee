@@ -288,11 +288,39 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ── Checkout ──
-  checkoutBtn.addEventListener("click", () => {
-    if (cart.length === 0) return;
-    showToast("Proceeding to checkout…");
-    // window.location.href = "checkout.html";
+  document.getElementById("checkoutBtn").addEventListener("click", () => {
+  const cart = getCart();
+  if (cart.length === 0) return;
+
+  const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+  cart.forEach(item => {
+    orders.unshift({
+      id: "ORD-" + Date.now() + "-" + Math.floor(Math.random() * 1000),
+      date: new Date().toLocaleDateString(),
+      status: "confirmed",
+
+      product: item.name,
+      seller: item.seller,
+      price: item.price,
+      qty: item.qty,
+      image: item.image,
+
+      timeline: [
+        { step: "Order placed", done: true,  date: new Date().toLocaleString() },
+        { step: "Order confirmed", done: true, date: new Date().toLocaleString() },
+        { step: "Shipped", done: false },
+        { step: "Delivered", done: false },
+      ]
+    });
   });
+
+  localStorage.setItem("orders", JSON.stringify(orders));
+  localStorage.removeItem("cart");
+
+  alert("✅ Order placed successfully!");
+  window.location.href = "buyerOrder.html";
+});
 
   // ── Init ──
   // Ensure every item has an id

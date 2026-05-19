@@ -662,3 +662,38 @@ html {
     height: 72px;
   }
 }
+
+
+.btn-back-dashboard {
+  margin:24px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #ee4d2d;
+  background: #fff;
+  color: #ee4d2d;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-back-dashboard:hover {
+  background: #ee4d2d;
+  color: #fff;
+}
+
+.btn-back {
+  margin: 10px 0 24px;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: 1.5px solid #ee4d2d;
+  background: #fff;
+  color: #ee4d2d;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-back:hover {
+  background: #ee4d2d;
+  color: #fff;
+}

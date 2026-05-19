@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ShoePee | My Orders</title>
+  <link rel="stylesheet" href="css/global.css" />
+  <link rel="stylesheet" href="css/buyerOrder.css" />
+</head>
+
+<body>
+
+<div id="navbar"></div>
+<!-- ✅ Back to dashboard button -->
+  <button class="btn-back-dashboard" onclick="goToDashboard()">
+    ← Back to Dashboard
+  </button>
+
+<section class="orders-page">
+  <h1>My Orders</h1>
+  <p class="orders-subtitle">Track and manage your purchases</p>
+
+  <div class="order-tabs" id="orderTabs">
+    <button class="order-tab active" data-filter="all">All</button>
+    <button class="order-tab" data-filter="confirmed">Confirmed</button>
+    <button class="order-tab" data-filter="shipped">Shipped</button>
+    <button class="order-tab" data-filter="delivered">Delivered</button>
+    <button class="order-tab" data-filter="cancelled">Cancelled</button>
+  </div>
+
+  <div id="orderList"></div>
+</section>
+
+<div id="footer"></div>
+
+<!-- IMPORTANT ORDER -->
+<script src="js/utils.js"></script>
+<script src="js/data.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+  loadComponent("navbar", "navbar.html");
+  loadComponent("footer", "footer.html");
+
+  // 🔙 Redirect function
+  window.goToDashboard = function () {
+    window.location.href = "buyer-dashboard.html";
+  };
+
+  // 🧠 Fake orders (what buyer purchased)
+  const buyerOrders = [
+    { id: 103, productId: 10, qty: 1, status: "confirmed", date: "May 18, 2026" },
+    { id: 102, productId: 6, qty: 2, status: "shipped", date: "May 15, 2026" },
+    { id: 101, productId: 3, qty: 1, status: "delivered", date: "May 10, 2026" },
+    { id: 104, productId: 2, qty: 1, status: "delivered", date: "May 20, 2026" },
+    { id: 105, productId: 5, qty: 1, status: "delivered", date: "May 20, 2026" },
+    { id: 106, productId: 1, qty: 1, status: "delivered", date: "May 20, 2026" },
+    { id: 107, productId: 4, qty: 1, status: "delivered", date: "May 20, 2026" }
+  ];
+
+  let activeFilter = "all";
+
+  function renderOrders() {
+    const list = document.getElementById("orderList");
+
+    const filtered = activeFilter === "all"
+      ? buyerOrders
+      : buyerOrders.filter(o => o.status === activeFilter);
+
+    if (!filtered.length) {
+      list.innerHTML = `<div class="empty-state">
+        <div class="empty-icon">📦</div>
+        <p>No orders found.</p>
+      </div>`;
+      return;
+    }
+
+    list.innerHTML = filtered.map(order => {
+
+      const product = products.find(p => p.id === order.productId);
+
+      return `
+        <div class="order-card">
+          <div class="order-card-header">
+            <div>
+              <div class="order-id"># ${order.id}</div>
+              <div class="order-date">${order.date}</div>
+            </div>
+            <span class="status-badge ${order.status}">
+              ${order.status}
+            </span>
+          </div>
+
+          <div class="order-product">
+            <img class="order-product-img" src="${product.image}">
+            <div class="order-product-info">
+              <p class="order-product-name">${product.name}</p>
+              <p class="order-product-seller">Sold by ${product.seller}</p>
+              <p class="order-product-price">
+                ₱${product.price.toLocaleString()}
+                <span class="order-product-qty">× ${order.qty}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  document.getElementById("orderTabs").addEventListener("click", e => {
+    const tab = e.target.closest(".order-tab");
+    if (!tab) return;
+
+    document.querySelectorAll(".order-tab")
+      .forEach(t => t.classList.remove("active"));
+
+    tab.classList.add("active");
+    activeFilter = tab.dataset.filter;
+    renderOrders();
+  });
+
+  renderOrders();
+});
+</script>
+
+</body>
+</html>
